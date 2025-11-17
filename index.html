@@ -174,7 +174,7 @@
 
                             <a class="btn btn-secondary" href="docs/CARDINAL-IN-HOME-EMPLOYMENT-APPLICATION.pdf" target="_blank" role="button">Application (PDF)</a>
 
-                            <a class="btn btn-secondary" href="../docs/CARDINAL-IN-HOME-EMPLOYMENT-APPLICATION.docx" target="_blank" role="button">Application (Word)</a>
+                            <a class="btn btn-secondary" href="docs/CARDINAL-IN-HOME-EMPLOYMENT-APPLICATION.docx" target="_blank" role="button">Application (Word)</a>
                         </div>
 
                         <p style="text-align: center; margin-top: 2rem;">Questions about joining our team? Feel free to contact us!</p>
@@ -369,9 +369,17 @@
 
         buttonLinks.forEach(link => {
             link.addEventListener('click', (e) => {
-                e.preventDefault();
                 const targetPage = link.getAttribute('data-page');
-                navigateToPage(targetPage);
+
+                // ONLY prevent default and navigate if a 'data-page' attribute exists
+                if (targetPage) {
+                    e.preventDefault();
+                    navigateToPage(targetPage);
+                }
+
+                // If there's no 'data-page' attribute (like your PDF/Word links),
+                // this code does nothing, and the browser handles the click
+                // normally, honoring the href and target="_blank".
             });
         });
 
